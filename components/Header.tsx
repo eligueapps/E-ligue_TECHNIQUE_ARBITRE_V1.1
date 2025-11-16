@@ -1,8 +1,14 @@
 
 import React from 'react';
-import { Search, Bell, UserCircle, Globe } from 'lucide-react';
+import { Search, Bell, UserCircle, Globe, LogOut } from 'lucide-react';
+import { User } from '../types';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+    user: User;
+    onLogout: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
   return (
     <header className="h-20 bg-white border-b border-gray-200 flex-shrink-0 flex items-center justify-between px-4 sm:px-6 md:px-8">
       <div className="relative w-full max-w-xs">
@@ -23,13 +29,16 @@ const Header: React.FC = () => {
           <Bell className="w-6 h-6" />
           <span className="absolute top-1 right-1 block h-2.5 w-2.5 rounded-full bg-red-500 border-2 border-white"></span>
         </button>
-        <div className="flex items-center space-i-2 ps-4 border-s border-gray-200 ms-4">
+        <div className="flex items-center space-i-2 ps-4 border-s border-gray-200 ms-2">
             <UserCircle className="w-8 h-8 text-gray-400"/>
             <div>
-                <p className="text-sm font-semibold text-gray-800">علي حسن</p>
-                <p className="text-xs text-gray-500 font-normal">مدير النظام</p>
+                <p className="text-sm font-semibold text-gray-800">{user.fullName}</p>
+                <p className="text-xs text-gray-500 font-normal">{user.role}</p>
             </div>
         </div>
+        <button onClick={onLogout} title="تسجيل الخروج" className="p-2 rounded-full text-gray-500 hover:bg-red-50 hover:text-red-600 transition-colors ms-2">
+            <LogOut className="w-5 h-5" />
+        </button>
       </div>
     </header>
   );

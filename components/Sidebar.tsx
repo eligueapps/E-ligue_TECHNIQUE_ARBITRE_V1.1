@@ -7,9 +7,13 @@ import { Bot } from 'lucide-react';
 interface SidebarProps {
   activePage: Page;
   setActivePage: (page: Page) => void;
+  userPermissions: Page[];
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) => {
+const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage, userPermissions }) => {
+  
+  const accessibleNavItems = NAV_ITEMS.filter(item => userPermissions.includes(item.key));
+
   return (
     <aside className="w-64 flex-shrink-0 bg-white border-l border-gray-200 flex flex-col shadow-md">
       <div className="h-20 flex items-center justify-center px-4 border-b border-gray-200">
@@ -19,7 +23,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) => {
         </div>
       </div>
       <nav className="flex-1 px-4 py-6 space-y-2">
-        {NAV_ITEMS.map((item) => (
+        {accessibleNavItems.map((item) => (
           <button
             key={item.key}
             onClick={() => setActivePage(item.key)}

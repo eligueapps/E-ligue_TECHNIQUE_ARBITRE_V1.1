@@ -13,8 +13,9 @@ import {
   Building,
   UserCheck,
   Trophy,
+  Users
 } from 'lucide-react';
-import { NavItem, KpiCardData, Club, Field, Referee, Delegate, Championship, Match, MatchStatus, MatchStage } from './types';
+import { NavItem, KpiCardData, Club, Field, Referee, Delegate, Championship, Match, MatchStatus, MatchStage, User, Page } from './types';
 
 export const NAV_ITEMS: NavItem[] = [
   { key: 'Dashboard', label: 'لوحة التحكم', icon: LayoutDashboard },
@@ -27,6 +28,7 @@ export const NAV_ITEMS: NavItem[] = [
   { key: 'TechnicalCommittee', label: 'اللجنة التقنية', icon: ClipboardList },
   { key: 'DisciplinaryCommittee', label: 'اللجنة التأديبية', icon: Gavel },
   { key: 'Infrastructure', label: 'البنية التحتية', icon: Building },
+  { key: 'Users', label: 'المستخدمون', icon: Users },
   { key: 'Settings', label: 'الإعدادات', icon: Settings },
 ];
 
@@ -191,3 +193,34 @@ export const MATCHES_DATA: Match[] = [
         status: 'ملغاة',
     }
 ];
+
+// Users Constants
+export const USERS_DATA: User[] = [
+    {
+        id: 1,
+        fullName: 'المسؤول العام',
+        nationalId: 'ADMIN001',
+        phone: '',
+        email: '',
+        username: 'Eligue_commandant',
+        password: 'Ca@199522;;',
+        role: 'مدير النظام',
+        permissions: ['Dashboard', 'Matches', 'Championships', 'Refereeing', 'Clubs', 'Delegates', 'Finance', 'TechnicalCommittee', 'DisciplinaryCommittee', 'Infrastructure', 'Users', 'Settings'],
+    },
+    {
+        id: 2,
+        fullName: 'فاطمة العلوي',
+        nationalId: 'B333444',
+        phone: '0644556677',
+        email: 'fatima.alaoui@email.com',
+        username: 'fatima',
+        password: 'password456',
+        role: 'محرر',
+        permissions: ['Dashboard', 'Matches', 'Clubs', 'Refereeing'],
+    }
+];
+
+export const PAGE_PERMISSIONS_OPTIONS: { key: Page; label: string }[] = NAV_ITEMS.map(item => ({
+    key: item.key,
+    label: item.label,
+}));

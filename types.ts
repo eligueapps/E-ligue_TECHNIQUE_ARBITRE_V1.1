@@ -12,6 +12,7 @@ export type Page =
   | 'DisciplinaryCommittee'
   | 'Infrastructure'
   | 'Delegates'
+  | 'Users'
   | 'Settings';
 
 export interface NavItem {
@@ -124,4 +125,16 @@ export interface Match {
   cycle: string;
   status: MatchStatus;
   notes?: string;
+}
+
+export interface User {
+    id: number;
+    fullName: string;
+    nationalId: string;
+    phone: string;
+    email: string;
+    username: string;
+    password?: string; // Should be hashed in a real app
+    permissions: Page[];
+    role: string;
 }
